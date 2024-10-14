@@ -1,15 +1,20 @@
 // TODO: add the necessary `Clone` implementations (and invocations)
 //  to get the code to compile.
 
+use std::iter::Cloned;
+
 pub fn summary(ticket: Ticket) -> (Ticket, Summary) {
-    (ticket, ticket.summary())
+    (ticket.clone(), ticket.summary())
 }
 
+
+#[derive(Clone)]
 pub struct Ticket {
     pub title: String,
     pub description: String,
     pub status: String,
 }
+
 
 impl Ticket {
     pub fn summary(self) -> Summary {
