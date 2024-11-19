@@ -8,6 +8,22 @@ enum Status {
     Done,
 }
 
+pub trait TryFrom<String>: Sized {
+    type Error;
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        if value.to_lowercase().matches("todo") {
+            return Status::ToDo;
+        }
+        else if value.to_lowercase().matches("inprogress") {
+            return Status::InProgress;
+        }
+        else if value.to_lowercase().matches("done") {
+            return Status::Done
+        }
+    }
+
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
